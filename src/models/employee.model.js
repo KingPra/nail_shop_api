@@ -11,6 +11,7 @@ const password = pw.password;
 mongoose.connect(`mongodb://${user}:${password}@${server}/${database}`, {
   useNewUrlParser: true
 });
+mongoose.set("useCreateIndex", true);
 
 let EmployeeSchema = new mongoose.Schema({
   name: {

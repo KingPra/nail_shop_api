@@ -29,11 +29,13 @@ router.post("/employee", (req, res) => {
 // may not need to query single name;
 router.get("/employee", (req, res) => {
   if (!req.query.name) {
-    EmployeeModel.find().then(doc => {
-      res.json(doc).catch(err => {
+    EmployeeModel.find()
+      .then(doc => {
+        res.json(doc);
+      })
+      .catch(err => {
         res.status(500).json(err);
       });
-    });
   } else {
     EmployeeModel.findOne({
       name: req.query.name
@@ -47,6 +49,7 @@ router.get("/employee", (req, res) => {
   }
 });
 
+// DELETE an employee
 router.delete("/employee", (req, res) => {
   if (!req.query.name) {
     return res.status(400).send("bruh, missing URL parameter, name");
@@ -54,6 +57,18 @@ router.delete("/employee", (req, res) => {
   EmployeeModel.findOneAndRemove({
     name: req.query.name
   })
+    .then(doc => res.json(doc))
+    .catch(err => {
+      res.status(500).json(err);
+    });
+});
+
+//PUT update employee info
+router.put("/employee", (req, res) => {
+  if (!req.query.id) {
+    return res.status(400).send("Missing URL parameter, ID");
+  }
+  EmployeeModel.findOneAndUpdate(req.query.id, req.body, { new: true })
     .then(doc => res.json(doc))
     .catch(err => {
       res.status(500).json(err);
