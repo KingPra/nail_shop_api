@@ -5,6 +5,7 @@ let personRoute = require("./routes/person");
 let employeeRoute = require("./routes/employee");
 // path module needs to be reference to serve files from public:
 let path = require("path");
+let cors = require("cors");
 
 // To handle HTTP POST request in Express.js version 4 and above, you need to install middleware module called body-parser.
 // body-parser extract the entire body portion of an incoming request stream and exposes it on req.body.
@@ -12,6 +13,7 @@ let path = require("path");
 // This body-parser module parses the JSON, buffer, string and URL encoded data submitted using HTTP POST request. Install body-parser using NPM as shown below.
 let bodyParser = require("body-parser");
 
+app.use(cors());
 // wer're using the json module
 // this takes any incoming json string and creating an attribute called 'body'
 app.use(bodyParser.json());
