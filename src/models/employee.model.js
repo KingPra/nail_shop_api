@@ -19,7 +19,8 @@ let EmployeeSchema = new mongoose.Schema({
     required: true,
     unique: true
   },
-  working: Boolean
+  working: Boolean,
+  jobList: String
 });
 
 module.exports = mongoose.model("Employee", EmployeeSchema);

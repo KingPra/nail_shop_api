@@ -13,7 +13,9 @@ let cors = require("cors");
 // This body-parser module parses the JSON, buffer, string and URL encoded data submitted using HTTP POST request. Install body-parser using NPM as shown below.
 let bodyParser = require("body-parser");
 
+// cors package fixes cors error codes
 app.use(cors());
+
 // wer're using the json module
 // this takes any incoming json string and creating an attribute called 'body'
 app.use(bodyParser.json());

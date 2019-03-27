@@ -68,7 +68,7 @@ router.put("/employee", (req, res) => {
   if (!req.query.id) {
     return res.status(400).send("Missing URL parameter, ID");
   }
-  EmployeeModel.findOneAndUpdate(req.query.id, req.body, { new: true })
+  EmployeeModel.findOneAndUpdate({ _id: req.query.id }, req.body, { new: true })
     .then(doc => res.json(doc))
     .catch(err => {
       res.status(500).json(err);
