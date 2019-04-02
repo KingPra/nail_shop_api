@@ -51,12 +51,15 @@ router.get("/employee", (req, res) => {
 
 // DELETE an employee
 router.delete("/employee", (req, res) => {
-  if (!req.query.name) {
-    return res.status(400).send("bruh, missing URL parameter, name");
+  if (!req.query.id) {
+    return res
+      .status(400)
+      .send(`bruh, missing URL parameter, id ${req.query.id}`);
   }
-  EmployeeModel.findOneAndRemove({
-    name: req.query.name
+  EmployeeModel.findOneAndDelete({
+    _id: req.query.id
   })
+    .then(`id is: ${req.query.id}`)
     .then(doc => res.json(doc))
     .catch(err => {
       res.status(500).json(err);
